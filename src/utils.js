@@ -17,6 +17,14 @@ const getElement = (selection) => {
   );
 };
 
+//fonction qui récupère l'id de lélément cliqué
+const idrecuparation = async () => {
+  const params = new URLSearchParams(window.location.search);
+  const id = params.get("id");
+
+  return id;
+};
+
 const formatPrice = () => {};
 
 const getStorageItem = () => {};
@@ -26,6 +34,7 @@ export {
   allProductsUrl,
   singleProductUrl,
   getElement,
+  idrecuparation,
   formatPrice,
   getStorageItem,
   setStorageItem,

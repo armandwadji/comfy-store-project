@@ -1,8 +1,6 @@
-import { allProductsUrl } from "./utils.js";
-
-const fetchProducts = async () => {
+const fetchProducts = async (url) => {
   try {
-    const response = await fetch(allProductsUrl);
+    const response = await fetch(url);
     const data = await response.json();
     return data;
   } catch (error) {

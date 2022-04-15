@@ -1,10 +1,17 @@
 // global imports
-import '../toggleSidebar.js';
-import '../cart/toggleCart.js';
-import '../cart/setupCart.js';
+import "../toggleSidebar.js";
+import "../cart/toggleCart.js";
+import "../cart/setupCart.js";
 // specific
-import { addToCart } from '../cart/setupCart.js';
-import { singleProductUrl, getElement, formatPrice } from '../utils.js';
+import { addToCart } from "../cart/setupCart.js";
+import {
+  singleProductUrl,
+  getElement,
+  formatPrice,
+  idrecuparation,
+} from "../utils.js";
+import fetchProducts from "../fetchProducts.js";
+import displayProduct from "../displayProduct.js";
 
 // selections
 // const loading = getElement('.page-loading');
@@ -18,7 +25,15 @@ import { singleProductUrl, getElement, formatPrice } from '../utils.js';
 // const descDOM = getElement('.single-product-desc');
 // const cartBtn = getElement('.addToCartBtn');
 
+const singleProduct = getElement(".single-product");
+
 // cart product
 // let productID;
 
 // show product when page loads
+
+window.addEventListener("DOMContentLoaded", async () => {
+  const id = await idrecuparation();
+  const data = await fetchProducts(`${singleProductUrl}?id=${id}`);
+  singleProduct.innerHTML = displayProduct(data);
+});
