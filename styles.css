@@ -360,9 +360,8 @@ Sidebar
   opacity: 0;
   background: rgba(0, 0, 0, 0.5);
 }
-
+/**/
 .sidebar-overlay.show {
-  /**/
   opacity: 1;
   z-index: 100;
 }
@@ -377,8 +376,8 @@ Sidebar
   padding: 4rem;
   transform: scale(0);
 }
+/**/
 .show .sidebar {
-  /**/
   transform: scale(1);
 }
 .sidebar-close {
