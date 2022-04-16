@@ -10,7 +10,6 @@ import { getElement } from "./src/utils.js";
 import { allProductsUrl } from "./src/utils.js";
 
 const featuredCenter = getElement(".featured-center");
-
 window.addEventListener("DOMContentLoaded", async () => {
   const data = await fetchProducts(allProductsUrl);
   data.length = 3;

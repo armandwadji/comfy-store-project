@@ -1,14 +1,26 @@
 // global imports
-import '../toggleSidebar.js';
-import '../cart/toggleCart.js';
-import '../cart/setupCart.js';
+import "../toggleSidebar.js";
+import "../cart/toggleCart.js";
+import "../cart/setupCart.js";
 
 //  filter imports
-import setupSearch from '../filters/search.js';
-import setupCompanies from '../filters/companies.js';
-import setupPrice from '../filters/price.js';
+import setupSearch from "../filters/search.js";
+import setupCompanies from "../filters/companies.js";
+import setupPrice from "../filters/price.js";
 
 // specific imports
-import { store } from '../store.js';
-import display from '../displayProducts.js';
-import { getElement } from '../utils.js';
+import { store } from "../store.js";
+import display from "../displayProducts.js";
+import { allProductsUrl, getElement } from "../utils.js";
+import fetchProducts from "../fetchProducts.js";
+
+const productsContainer = getElement(".products-container");
+
+window.addEventListener("DOMContentLoaded", async () => {
+  const data = await fetchProducts(allProductsUrl);
+  const products = display(data);
+  productsContainer.innerHTML = products;
+  setupCompanies(data);
+  setupPrice();
+  setupSearch();
+});
