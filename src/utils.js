@@ -27,8 +27,12 @@ const idrecuparation = async () => {
 
 const formatPrice = () => {};
 
-const getStorageItem = () => {};
-const setStorageItem = () => {};
+const getStorageItem = (panier) => {
+  localStorage.setItem("panier", JSON.stringify(panier));
+};
+const setStorageItem = () => {
+  return JSON.parse(localStorage.getItem("panier"));
+};
 
 export {
   allProductsUrl,

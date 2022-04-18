@@ -13,6 +13,7 @@ import { store } from "../store.js";
 import display from "../displayProducts.js";
 import { allProductsUrl, getElement } from "../utils.js";
 import fetchProducts from "../fetchProducts.js";
+import addToCartDOM from "../cart/addToCartDOM.js";
 
 const productsContainer = getElement(".products-container");
 
@@ -23,4 +24,5 @@ window.addEventListener("DOMContentLoaded", async () => {
   setupCompanies(data);
   setupPrice();
   setupSearch();
+  addToCartDOM();
 });
