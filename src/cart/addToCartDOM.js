@@ -6,11 +6,12 @@ import {
   setStorageItem,
   singleProductUrl,
 } from "../utils.js";
+import { openCart } from "./toggleCart.js";
 
 const addToCartDOM = () => {
   const addProducts = document.querySelectorAll(".product-cart-btn");
 
-  let panier = setStorageItem() ? setStorageItem() : [];
+  let panier = setStorageItem("panier") ? setStorageItem("panier") : [];
 
   addProducts.forEach((product) => {
     product.addEventListener("click", async (e) => {
@@ -21,14 +22,22 @@ const addToCartDOM = () => {
       let foundProduct = panier.find((item) => item.id === id);
       if (!foundProduct) {
         panier = [...panier, { id, price, img, title, amount: 1 }];
-        getStorageItem(panier);
+        getStorageItem("panier", panier);
       } else {
         panier.map((item) => item.id === id && item.amount++);
-        getStorageItem(panier);
+        getStorageItem("panier", panier);
       }
+      showPanier(panier);
+      openCart();
     });
   });
+  showPanier(panier);
+  // increase(panier);
+};
 
+export default addToCartDOM;
+
+export const showPanier = (panier) => {
   const cartItems = getElement(".cart-items");
   cartItems.innerHTML = panier
     .map(({ id, price, img, title, amount }) => {
@@ -65,4 +74,25 @@ const addToCartDOM = () => {
   totalDOM.textContent = `total : $${total}`;
 };
 
-export default addToCartDOM;
+// const increase = (panier) => {
+//   const increaseBtns = document.querySelectorAll(".cart-item-increase-btn");
+//   increaseBtns.forEach((btn) => {
+//     btn.addEventListener("click", (e) => {
+//       const id = e.currentTarget.dataset.id;
+//       console.log(e.currentTarget.dataset.id);
+//       panier.map((item) => item.id === id && item.amount++);
+//       showPanier(panier);
+//     });
+//   });
+// };
+
+const increaseBtns = document.querySelectorAll(".cart-item-increase-btn");
+increaseBtns.forEach((btn) => {
+  btn.addEventListener("click", (e) => {
+    const id = e.currentTarget.dataset.id;
+    console.log(e.currentTarget.dataset.id);
+    panier.map((item) => item.id === id && item.amount++);
+    showPanier(panier);
+  });
+});
+const decrease = () => {};

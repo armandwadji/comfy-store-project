@@ -27,11 +27,11 @@ const idrecuparation = async () => {
 
 const formatPrice = () => {};
 
-const getStorageItem = (panier) => {
-  localStorage.setItem("panier", JSON.stringify(panier));
+const getStorageItem = (key, value) => {
+  localStorage.setItem(key, JSON.stringify(value));
 };
-const setStorageItem = () => {
-  return JSON.parse(localStorage.getItem("panier"));
+const setStorageItem = (value) => {
+  return JSON.parse(localStorage.getItem(value));
 };
 
 export {

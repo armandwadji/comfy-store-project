@@ -1,6 +1,7 @@
 import { getStorageItem, setStorageItem } from "./utils.js";
 
-let store = [];
+const data = setStorageItem("articles");
+const store = setStorageItem("panier") ? setStorageItem("panier") : [];
 const setupStore = () => {};
 const findProduct = () => {};
-export { store, setupStore, findProduct };
+export { data, store, setupStore, findProduct };

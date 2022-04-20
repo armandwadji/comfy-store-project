@@ -1,3 +1,5 @@
+import { getStorageItem } from "./utils.js";
+
 const fetchProducts = async (url) => {
   try {
     const response = await fetch(url);
