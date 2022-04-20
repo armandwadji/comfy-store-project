@@ -8,7 +8,7 @@ import {
 } from "../utils.js";
 import { openCart } from "./toggleCart.js";
 
-const addToCartDOM = () => {
+const addToCartDOM = async () => {
   const addProducts = document.querySelectorAll(".product-cart-btn");
 
   let panier = setStorageItem("panier") ? setStorageItem("panier") : [];
@@ -27,17 +27,18 @@ const addToCartDOM = () => {
         panier.map((item) => item.id === id && item.amount++);
         getStorageItem("panier", panier);
       }
-      showPanier(panier);
+      await showPanier(panier);
       openCart();
     });
   });
-  showPanier(panier);
-  // increase(panier);
+  await showPanier(panier);
+  increase(panier);
+  decrease(panier);
 };
 
 export default addToCartDOM;
 
-export const showPanier = (panier) => {
+export const showPanier = async (panier) => {
   const cartItems = getElement(".cart-items");
   cartItems.innerHTML = panier
     .map(({ id, price, img, title, amount }) => {
@@ -74,25 +75,32 @@ export const showPanier = (panier) => {
   totalDOM.textContent = `total : $${total}`;
 };
 
-// const increase = (panier) => {
-//   const increaseBtns = document.querySelectorAll(".cart-item-increase-btn");
-//   increaseBtns.forEach((btn) => {
-//     btn.addEventListener("click", (e) => {
-//       const id = e.currentTarget.dataset.id;
-//       console.log(e.currentTarget.dataset.id);
-//       panier.map((item) => item.id === id && item.amount++);
-//       showPanier(panier);
-//     });
-//   });
-// };
-
-const increaseBtns = document.querySelectorAll(".cart-item-increase-btn");
-increaseBtns.forEach((btn) => {
-  btn.addEventListener("click", (e) => {
-    const id = e.currentTarget.dataset.id;
-    console.log(e.currentTarget.dataset.id);
-    panier.map((item) => item.id === id && item.amount++);
-    showPanier(panier);
+export const increase = (panier) => {
+  const increaseBtns = document.querySelectorAll(".cart-item-increase-btn");
+  increaseBtns.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      const id = e.currentTarget.dataset.id;
+      // console.log(e.currentTarget.dataset.id);
+      panier.map((item) => item.id === id && item.amount++);
+      // console.log(panier);
+      getStorageItem("panier", panier);
+      addToCartDOM();
+    });
   });
-});
-const decrease = () => {};
+};
+
+export const decrease = (panier) => {
+  const increaseBtns = document.querySelectorAll(".cart-item-decrease-btn");
+  increaseBtns.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      let panierDel = [];
+      const id = e.currentTarget.dataset.id;
+      console.log(e.currentTarget.dataset.id);
+      panier.map((item) => item.id === id && item.amount--);
+      panierDel = panier.filter((item) => item.amount !== 0);
+      console.log(panierDel);
+      getStorageItem("panier", panierDel);
+      addToCartDOM();
+    });
+  });
+};
