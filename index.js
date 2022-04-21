@@ -13,9 +13,9 @@ import addToCartDOM, { showPanier } from "./src/cart/addToCartDOM.js";
 /***** EVENEMENTS ******/
 
 window.addEventListener("DOMContentLoaded", async () => {
-  const featuredCenter = getElement(".featured-center");
+  // const featuredCenter = getElement(".featured-center");
   getStorageItem("articles", await fetchProducts(allProductsUrl));
   const featureds = data.filter((item) => item.fields.featured && item);
-  featuredCenter.innerHTML = display(featureds);
+  display(featureds, ".featured-center");
   addToCartDOM();
 });

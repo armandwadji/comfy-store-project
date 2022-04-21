@@ -1,7 +1,7 @@
 import { formatPrice, getElement } from "./utils.js";
 import { addToCart } from "./cart/setupCart.js";
-const display = (data) => {
-  const productsContainer = getElement(".products-container");
+const display = (data, selector) => {
+  const productsContainer = getElement(selector);
   const products = data
     .map((product) => {
       const { id } = product;
@@ -30,8 +30,9 @@ const display = (data) => {
     `;
     })
     .join("");
-
-  productsContainer.innerHTML = products;
+  products
+    ? (productsContainer.innerHTML = products)
+    : (productsContainer.innerHTML = `<h5 class="section-loading">il n'ya pas de produit correspondant a votre recherche...</h5>`);
 };
 
 export default display;

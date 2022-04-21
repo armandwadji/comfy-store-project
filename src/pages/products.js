@@ -16,7 +16,6 @@ import fetchProducts from "../fetchProducts.js";
 import addToCartDOM from "../cart/addToCartDOM.js";
 
 /*******ON pointe sur les balises nécéssaires********/
-const productsContainer = getElement(".products-container");
 const searchInput = document.querySelector(".search-input");
 const rangeInput = document.querySelector(".price-filter");
 const priceValue = getElement(".price-value");
@@ -53,7 +52,7 @@ companies.addEventListener("click", (e) => {
 //fonctions pour filtrer la recherche
 const searchFilter = () => {
   updatefilter();
-  display(productsFilter);
+  display(productsFilter, ".products-container");
 };
 
 //fonctions pour filtrer la catégorie
@@ -61,16 +60,16 @@ const categorieFilter = (value) => {
   if (value === "all") {
     productsFilter = data;
     categoryvalue = "";
-    display(productsFilter);
+    display(productsFilter, ".products-container");
   } else {
     updatefilter();
-    display(productsFilter);
+    display(productsFilter, ".products-container");
   }
 };
 //fonctions pour filtrer le prix
 const rangeFilter = () => {
   updatefilter();
-  display(productsFilter);
+  display(productsFilter, ".products-container");
 };
 
 const updatefilter = () => {
@@ -103,7 +102,7 @@ const updatefilter = () => {
 
 window.addEventListener("DOMContentLoaded", async () => {
   setupCompanies(data);
-  display(data);
+  display(data, ".products-container");
   setupSearch();
   setupPrice();
   updatefilter();
