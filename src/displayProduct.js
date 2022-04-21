@@ -32,7 +32,7 @@ const displayProduct = (data) => {
                     <p class="single-product-desc">
                     ${description}
                     </p>
-                    <button class="addToCartBtn btn" data-id=${id}>add to cart</button>
+                    <button class="addToCartBtn btn product-cart-btn" data-id=${id}>add to cart</button>
                 </div>
                 </article>
             </div>  

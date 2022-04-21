@@ -12,6 +12,7 @@ import {
 } from "../utils.js";
 import fetchProducts from "../fetchProducts.js";
 import displayProduct from "../displayProduct.js";
+import addToCartDOM from "../cart/addToCartDOM.js";
 
 // selections
 // const loading = getElement('.page-loading');
@@ -23,7 +24,6 @@ import displayProduct from "../displayProduct.js";
 // const priceDOM = getElement('.single-product-price');
 // const colorsDOM = getElement('.single-product-colors');
 // const descDOM = getElement('.single-product-desc');
-// const cartBtn = getElement('.addToCartBtn');
 
 const singleProduct = getElement(".single-product");
 
@@ -36,4 +36,5 @@ window.addEventListener("DOMContentLoaded", async () => {
   const id = await idrecuparation();
   const data = await fetchProducts(`${singleProductUrl}?id=${id}`);
   singleProduct.innerHTML = displayProduct(data);
+  addToCartDOM();
 });
