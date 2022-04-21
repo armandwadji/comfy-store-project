@@ -1,4 +1,5 @@
 import fetchProducts from "../fetchProducts.js";
+import { store } from "../store.js";
 import {
   formatPrice,
   getElement,
@@ -22,18 +23,20 @@ const addToCartDOM = async () => {
       let foundProduct = panier.find((item) => item.id === id);
       if (!foundProduct) {
         panier = [...panier, { id, price, img, title, amount: 1 }];
-        getStorageItem("panier", panier);
+        openCart();
       } else {
-        panier.map((item) => item.id === id && item.amount++);
-        getStorageItem("panier", panier);
+        await panier.map((item) => item.id === id && item.amount++);
+        openCart();
       }
-      await showPanier(panier);
-      openCart();
+      showPanier(panier);
+      increase(panier);
+      decrease(panier);
     });
   });
-  await showPanier(panier);
+  showPanier(panier);
   increase(panier);
   decrease(panier);
+  getStorageItem("panier", panier);
 };
 
 export default addToCartDOM;
@@ -75,7 +78,7 @@ export const showPanier = async (panier) => {
   totalDOM.textContent = `total : $${total}`;
 };
 
-export const increase = (panier) => {
+const increase = async (panier) => {
   const increaseBtns = document.querySelectorAll(".cart-item-increase-btn");
   increaseBtns.forEach((btn) => {
     btn.addEventListener("click", (e) => {
@@ -89,16 +92,16 @@ export const increase = (panier) => {
   });
 };
 
-export const decrease = (panier) => {
+const decrease = async (panier) => {
   const increaseBtns = document.querySelectorAll(".cart-item-decrease-btn");
   increaseBtns.forEach((btn) => {
     btn.addEventListener("click", (e) => {
       let panierDel = [];
       const id = e.currentTarget.dataset.id;
-      console.log(e.currentTarget.dataset.id);
+      // console.log(e.currentTarget.dataset.id);
       panier.map((item) => item.id === id && item.amount--);
       panierDel = panier.filter((item) => item.amount !== 0);
-      console.log(panierDel);
+      // console.log(panierDel);
       getStorageItem("panier", panierDel);
       addToCartDOM();
     });

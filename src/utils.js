@@ -21,13 +21,12 @@ const getElement = (selection) => {
 const idrecuparation = async () => {
   const params = new URLSearchParams(window.location.search);
   const id = params.get("id");
-
   return id;
 };
 
 const formatPrice = () => {};
 
-const getStorageItem = (key, value) => {
+const getStorageItem = async (key, value) => {
   localStorage.setItem(key, JSON.stringify(value));
 };
 const setStorageItem = (value) => {
