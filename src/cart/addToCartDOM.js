@@ -1,5 +1,5 @@
 import fetchProducts from "../fetchProducts.js";
-import { store } from "../store.js";
+
 import {
   formatPrice,
   getElement,

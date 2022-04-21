@@ -1,11 +1,11 @@
 import { formatPrice, getElement } from "./utils.js";
-import { addToCart } from "./cart/setupCart.js";
+
 const display = (data, selector) => {
   const productsContainer = getElement(selector);
   const products = data
     .map((product) => {
       const { id } = product;
-      const { name: title, price, company: category } = product.fields;
+      const { name: title, price } = product.fields;
       const { url } = product.fields.image[0];
 
       return `

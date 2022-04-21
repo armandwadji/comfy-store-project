@@ -1,7 +1,6 @@
 // global imports
 import "../toggleSidebar.js";
 import "../cart/toggleCart.js";
-import "../cart/setupCart.js";
 
 //  filter imports
 import setupSearch from "../filters/search.js";
@@ -9,10 +8,10 @@ import setupCompanies from "../filters/companies.js";
 import setupPrice from "../filters/price.js";
 
 // specific imports
-import { data, store } from "../store.js";
+import { data } from "../store.js";
 import display from "../displayProducts.js";
-import { allProductsUrl, formatPrice, getElement } from "../utils.js";
-import fetchProducts from "../fetchProducts.js";
+import { formatPrice, getElement } from "../utils.js";
+
 import addToCartDOM from "../cart/addToCartDOM.js";
 
 /*******ON pointe sur les balises nécéssaires********/
