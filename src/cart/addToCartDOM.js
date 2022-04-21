@@ -16,6 +16,7 @@ const addToCartDOM = async () => {
   await showPanier(panier);
   increase(panier);
   decrease(panier);
+  removeItem(panier);
 
   addProducts.forEach((product) => {
     product.addEventListener("click", async (e) => {
@@ -34,6 +35,7 @@ const addToCartDOM = async () => {
       showPanier(panier);
       increase(panier);
       decrease(panier);
+      removeItem(panier);
     });
   });
 };
@@ -99,6 +101,20 @@ const decrease = async (panier) => {
       panier.map((item) => item.id === id && item.amount--);
       panierDel = panier.filter((item) => item.amount !== 0);
 
+      getStorageItem("panier", panierDel);
+      addToCartDOM();
+    });
+  });
+};
+
+const removeItem = async (panier) => {
+  const removesBtn = document.querySelectorAll(".cart-item-remove-btn");
+
+  removesBtn.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      let panierDel = [];
+      const id = btn.dataset.id;
+      panierDel = panier.filter((item) => item.id !== id);
       getStorageItem("panier", panierDel);
       addToCartDOM();
     });
