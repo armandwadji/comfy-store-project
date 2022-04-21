@@ -52,7 +52,7 @@ export const showPanier = async (panier) => {
     <img src=${img} alt="photo de ${title}" class="cart-item-img" />
     <div>
       <h4 class="cart-item-name">${title}</h4>
-      <p class="cart-item-price">$${price}</p>
+      <p class="cart-item-price">${formatPrice(price)}</p>
       <button class="cart-item-remove-btn" data-id=${id}>remove</button>
     </div>
 
@@ -76,7 +76,7 @@ export const showPanier = async (panier) => {
 
   const totalDOM = getElement(".cart-total");
   const total = panier.reduce((acc, val) => acc + val.amount * val.price, 0);
-  totalDOM.textContent = `total : $${total}`;
+  totalDOM.textContent = `total : ${formatPrice(total)}`;
 };
 
 const increase = async (panier) => {

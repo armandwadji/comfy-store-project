@@ -23,7 +23,7 @@ const display = (data, selector) => {
             </div>
             <footer>
             <p class="product-name">${title}</p>
-            <h4 class="product-price">$${price}</h4>
+            <h4 class="product-price">${formatPrice(price)}</h4>
             </footer>
         </article>
     
@@ -32,7 +32,7 @@ const display = (data, selector) => {
     .join("");
   products
     ? (productsContainer.innerHTML = products)
-    : (productsContainer.innerHTML = `<h5 class="section-loading">il n'ya pas de produit correspondant a votre recherche...</h5>`);
+    : (productsContainer.innerHTML = `<h5 class="section-loading">aucuns resultats correspondants a votre recherche...</h5>`);
 };
 
 export default display;

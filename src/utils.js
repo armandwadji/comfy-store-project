@@ -24,7 +24,13 @@ const idrecuparation = async () => {
   return id;
 };
 
-const formatPrice = () => {};
+const formatPrice = (price) => {
+  let formattedprice = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+  }).format((price / 100).toFixed(2));
+  return formattedprice;
+};
 
 const getStorageItem = async (key, value) => {
   localStorage.setItem(key, JSON.stringify(value));

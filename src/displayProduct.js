@@ -1,3 +1,5 @@
+import { formatPrice } from "./utils";
+
 const displayProduct = (data) => {
   const { id } = data;
   const {
@@ -25,7 +27,7 @@ const displayProduct = (data) => {
                 <div>
                     <h2 class="single-product-title">${title}</h2>
                     <p class="single-product-company text-slanted">${category}</p>
-                    <p class="single-product-price">$${price}</p>
+                    <p class="single-product-price">${formatPrice(price)}</p>
                     <div class="single-product-colors">
                         ${colorsSpan}
                     </div>

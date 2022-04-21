@@ -11,7 +11,7 @@ import setupPrice from "../filters/price.js";
 // specific imports
 import { data, store } from "../store.js";
 import display from "../displayProducts.js";
-import { allProductsUrl, getElement } from "../utils.js";
+import { allProductsUrl, formatPrice, getElement } from "../utils.js";
 import fetchProducts from "../fetchProducts.js";
 import addToCartDOM from "../cart/addToCartDOM.js";
 
@@ -26,7 +26,7 @@ let productsFilter = new Array();
 let searchvalue = "";
 let categoryvalue = "";
 let rangevalue = rangeInput.value;
-priceValue.textContent = `$${rangevalue}`;
+priceValue.textContent = `${formatPrice(rangevalue)}`;
 
 /********** LES EVENEMENTS *************/
 searchInput.addEventListener("input", (e) => {

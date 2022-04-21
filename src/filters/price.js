@@ -1,4 +1,4 @@
-import { getElement } from "../utils.js";
+import { formatPrice, getElement } from "../utils.js";
 import display from "../displayProducts.js";
 
 const setupPrice = () => {
@@ -7,7 +7,7 @@ const setupPrice = () => {
 
   priceFilter.addEventListener("input", (e) => {
     const price = e.target.value;
-    priceValue.textContent = `$${price}`;
+    priceValue.textContent = `${formatPrice(price)}`;
   });
 };
 
