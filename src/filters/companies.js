@@ -15,7 +15,7 @@ const setupCompanies = (data) => {
     .join("");
   const companiesDOM = getElement(".companies");
 
-  return (companiesDOM.innerHTML = categories);
+  companiesDOM.innerHTML = categories;
 };
 
 export default setupCompanies;

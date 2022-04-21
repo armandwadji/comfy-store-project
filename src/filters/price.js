@@ -6,7 +6,8 @@ const setupPrice = () => {
   const priceValue = getElement(".price-value");
 
   priceFilter.addEventListener("input", (e) => {
-    priceValue.textContent = `$${e.target.value}`;
+    const price = e.target.value;
+    priceValue.textContent = `$${price}`;
   });
 };
 
