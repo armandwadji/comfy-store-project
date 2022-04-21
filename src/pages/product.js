@@ -14,4 +14,5 @@ window.addEventListener("DOMContentLoaded", async () => {
   const data = await fetchProducts(`${singleProductUrl}?id=${id}`);
   singleProduct.innerHTML = displayProduct(data);
   addToCartDOM();
+  getElement(".page-loading").style = "display: none";
 });

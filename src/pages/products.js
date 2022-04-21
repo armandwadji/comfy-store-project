@@ -106,4 +106,5 @@ window.addEventListener("DOMContentLoaded", async () => {
   setupPrice();
   updatefilter();
   addToCartDOM();
+  getElement(".page-loading").style = "display: none";
 });
