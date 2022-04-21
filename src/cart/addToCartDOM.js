@@ -13,7 +13,7 @@ const addToCartDOM = async () => {
   const addProducts = document.querySelectorAll(".product-cart-btn");
 
   let panier = setStorageItem("panier") ? setStorageItem("panier") : [];
-  await showPanier(panier);
+  showPanier(panier);
   increase(panier);
   decrease(panier);
   removeItem(panier);
