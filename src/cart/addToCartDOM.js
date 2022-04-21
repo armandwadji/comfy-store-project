@@ -13,6 +13,9 @@ const addToCartDOM = async () => {
   const addProducts = document.querySelectorAll(".product-cart-btn");
 
   let panier = setStorageItem("panier") ? setStorageItem("panier") : [];
+  await showPanier(panier);
+  increase(panier);
+  decrease(panier);
 
   addProducts.forEach((product) => {
     product.addEventListener("click", async (e) => {
@@ -33,15 +36,12 @@ const addToCartDOM = async () => {
       decrease(panier);
     });
   });
-  showPanier(panier);
-  increase(panier);
-  decrease(panier);
-  getStorageItem("panier", panier);
 };
 
 export default addToCartDOM;
 
 export const showPanier = async (panier) => {
+  getStorageItem("panier", panier);
   const cartItems = getElement(".cart-items");
   cartItems.innerHTML = panier
     .map(({ id, price, img, title, amount }) => {
@@ -74,7 +74,6 @@ export const showPanier = async (panier) => {
 
   const totalDOM = getElement(".cart-total");
   const total = panier.reduce((acc, val) => acc + val.amount * val.price, 0);
-
   totalDOM.textContent = `total : $${total}`;
 };
 
@@ -83,9 +82,8 @@ const increase = async (panier) => {
   increaseBtns.forEach((btn) => {
     btn.addEventListener("click", (e) => {
       const id = e.currentTarget.dataset.id;
-      // console.log(e.currentTarget.dataset.id);
       panier.map((item) => item.id === id && item.amount++);
-      // console.log(panier);
+
       getStorageItem("panier", panier);
       addToCartDOM();
     });
@@ -98,10 +96,9 @@ const decrease = async (panier) => {
     btn.addEventListener("click", (e) => {
       let panierDel = [];
       const id = e.currentTarget.dataset.id;
-      // console.log(e.currentTarget.dataset.id);
       panier.map((item) => item.id === id && item.amount--);
       panierDel = panier.filter((item) => item.amount !== 0);
-      // console.log(panierDel);
+
       getStorageItem("panier", panierDel);
       addToCartDOM();
     });

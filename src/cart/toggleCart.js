@@ -5,7 +5,9 @@ const cartClose = getElement(".cart-close");
 const cartOverlay = getElement(".cart-overlay");
 
 export const openCart = () => {
-  cartOverlay.classList.add("show");
+  setTimeout(() => {
+    cartOverlay.classList.add("show");
+  }, 200);
 };
 
 cartOpen.addEventListener("click", () => {
