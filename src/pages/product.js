@@ -12,7 +12,9 @@ window.addEventListener("DOMContentLoaded", async () => {
   const singleProduct = getElement(".single-product");
   const id = await idrecuparation();
   const data = await fetchProducts(`${singleProductUrl}?id=${id}`);
+
   singleProduct.innerHTML = displayProduct(data);
+
   addToCartDOM();
   getElement(".page-loading").style = "display: none";
 });

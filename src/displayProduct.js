@@ -1,4 +1,4 @@
-import { formatPrice } from "./utils.js";
+import { formatPrice, getElement } from "./utils.js";
 
 const displayProduct = (data) => {
   const { id } = data;
@@ -16,6 +16,9 @@ const displayProduct = (data) => {
       return `<span class = "product-color" style = " background: ${color}"></span>`;
     })
     .join("");
+
+  const pageHerotitle = getElement(".page-hero-title");
+  pageHerotitle.textContent = `Home / ${title}`;
 
   return ` <div class="section-center single-product-center">
                 <img
