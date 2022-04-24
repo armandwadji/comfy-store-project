@@ -13,31 +13,32 @@ const addToCartDOM = async () => {
   const addProducts = document.querySelectorAll(".product-cart-btn");
 
   let panier = setStorageItem("panier") ? setStorageItem("panier") : [];
-  showPanier(panier);
-  increase(panier);
-  decrease(panier);
-  removeItem(panier);
 
   addProducts.forEach((product) => {
     product.addEventListener("click", async (e) => {
+      panier = setStorageItem("panier");
+
       const id = product.dataset.id;
       const data = await fetchProducts(`${singleProductUrl}?id=${id}`);
       const { price, name: title } = data.fields;
       const { url: img } = data.fields.image[0];
-      let foundProduct = panier.find((item) => item.id === id);
-      if (!foundProduct) {
-        panier = [...panier, { id, price, img, title, amount: 1 }];
-        openCart();
-      } else {
-        await panier.map((item) => item.id === id && item.amount++);
-        openCart();
-      }
+      let foundProduct = panier.some((item) => item.id === id);
+
+      !foundProduct
+        ? (panier = [...panier, { id, price, img, title, amount: 1 }])
+        : panier.map((item) => item.id === id && item.amount++);
+
       showPanier(panier);
       increase(panier);
       decrease(panier);
       removeItem(panier);
+      openCart();
     });
   });
+  showPanier(panier);
+  increase(panier);
+  decrease(panier);
+  removeItem(panier);
 };
 
 export default addToCartDOM;
