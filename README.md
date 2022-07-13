@@ -1,6 +1,6 @@
 <div>
   <h1 align="center">
-    <a href="https://github.com/armandwadji/comfy-store-project.git">Comfy Strore 🛋 🪑
+    <a href="https://github.com/armandwadji/comfy-store-project.git">Comfy Strore Web 🛋 🪑
     </a>  
   </h1>
 </div> 
