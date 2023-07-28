@@ -3,7 +3,7 @@
 //   DATA IS THE SAME JUST A DIFFERENT URL,
 //   DOES NOT AFFECT PROJECT FUNCTIONALITY
 
-const allProductsUrl = "https://course-api.com/react-store-products";
+const allProductsUrl = "https://course-api.com/javascript-store-products";
 const singleProductUrl = "https://course-api.com/javascript-store-single-product";
 
 const getElement = (selection) => {
